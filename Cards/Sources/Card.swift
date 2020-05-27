@@ -96,6 +96,9 @@ import UIKit
      from                   -> Your current ViewController (self)
      */
     public func shouldPresent( _ contentViewController: UIViewController?, from superVC: UIViewController?, fullscreen: Bool = false) {
+        
+        detailVC.modalPresentationStyle = .fullScreen
+        
         if detailVC.children.count > 0{
             let viewControllers:[UIViewController] = detailVC.children
             for viewContoller in viewControllers{
@@ -130,7 +133,7 @@ import UIKit
     /**
      Delegate for the card. Should extend your VC with CardDelegate.
      */
-    public var delegate: CardDelegate?
+    public weak var delegate: CardDelegate?
     
     //Private Vars
     fileprivate var tap = UITapGestureRecognizer()
@@ -142,6 +145,9 @@ import UIKit
     var isPresenting = false
     
     //MARK: - View Life Cycle
+    deinit {
+        
+    }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

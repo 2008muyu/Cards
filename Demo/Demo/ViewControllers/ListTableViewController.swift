@@ -32,13 +32,20 @@ class ListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let card = cell.viewWithTag(1000) as! CardArticle
-        let cardContent = storyboard!.instantiateViewController(withIdentifier: "CardContent")
-        
-        card.shouldPresent(cardContent, from: self, fullscreen: true)
+//        let cardContent = storyboard!.instantiateViewController(withIdentifier: "CardContent")
+        card.delegate = self
+//        card.shouldPresent(cardContent, from: self, fullscreen: true)
         return cell
     }
     
 
 
 
+}
+
+extension ListTableViewController : CardDelegate {
+    func cardDidTapInside(card: Card) {
+        let cardContent = storyboard!.instantiateViewController(withIdentifier: "CardContent")
+        card.shouldPresent(cardContent, from: self, fullscreen: true)
+    }
 }

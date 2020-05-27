@@ -23,6 +23,10 @@ class CardContentViewController: UIViewController {
         
     ]
     
+    deinit {
+        print("cotent deinit!")
+    }
+    
     override func viewDidLoad() {
         print("Loaded!")
     }
